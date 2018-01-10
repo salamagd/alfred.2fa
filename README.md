@@ -1,58 +1,54 @@
 #### What is this?
 
-This is an alfred workflow that allows you to retrieve the one time password for sites that use two factor authentication. You set up the sites in alfred.app, then you can pull the one time password for the site at any time with alfred. The password is automatically copied to the clipboard. This can and should be used in conjunction with another 2fa method.
-
-So far tested with `OpenVPN`, `Github`, `Amazon`
+This is an Alfred workflow that allows you to retrieve one-time passwords for sites that use two-factor authentication. You set up the sites in Alfred, then you can pull the one time password for the site at any time with Alfred. The password is automatically copied to the clipboard.
 
 ![pic](http://i.imgur.com/R9BFGgh.png)
 
 ![pic](http://i.imgur.com/wlkx0OR.png)
 
-### How's it work
+### Setup
 
-1. Install Node http://nodejs.org/download/
-2. Install this workflow by clicking this https://github.com/jlippold/alfred.2fa/raw/master/2FA.alfredworkflow, then opening in finder.
-3. Setup 2FA with some service (github, openVPN). Scan the barcode into your mobile app (authy, google authenticator) and note the secret key.
-4. input the secret key into alfred.app `2f add someService secretKey`
-5. call it anytime to get the one time password `2f someService`
+1. Install Node.js: http://nodejs.org/download/ or `brew install node`
+2. Install this workflow by clicking on https://github.com/salamagd/alfred.2fa/raw/master/2FA.alfredworkflow, then opening the downloaded file.
+3. Setup two-factor authentication with some service (eg. GitHub, AWS, etc).
+4. Scan the barcode into your mobile app (eg. Authy or Google Authenticator) and note the secret key.
+5. Add the secret key into Alfred: `2f add [SERVICE_NAME] [SECRET_KEY]`
+6. Use Alfred at any time to generate a one-time password and copy it to the clipboard: `2f [SERVICE_NAME]`
 
 ### Usage
 
-Add new
+#### Add new service:
 
 ```
-format:
-2f add ServerName Secret
+2f add [SERVICE_NAME] [SECRET_KEY]
 
-example:
-2f add AmazonAWS ASDJKS34DHUY12
+eg.:
+2f add aws ASDJKS34DHUY12
 ```
 
-Get One Time Password
+#### Generate one-time password:
 
 ```
-format:
-2f ServerName
+2f [SERVICE_NAME]
 
-example:
-2f AmazonAWS
+eg.:
+2f aws
 ```
 
-Remove
+#### Remove existing service:
 
 ```
-format:
-2f delete ServerName
+2f delete [SERVICE_NAME]
 
-example:
-2f delete AmazonAWS
+eg.:
+2f delete aws
 ```
 
 
-### Credits 
+### Credits
 
-Alfred Feedback: https://github.com/lrrfantasy/alfred-feedback-xml-generation
+Alfred feedback: https://github.com/lrrfantasy/alfred-feedback-xml-generation
 
-OPT generation: https://www.npmjs.org/package/onceler
+OTP generation: https://www.npmjs.org/package/otp
 
 Icons: http://fortawesome.github.io/Font-Awesome/
