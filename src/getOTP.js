@@ -1,14 +1,14 @@
 var servers = require('./servers.json');
-var TOTP = require('onceler').TOTP;
+var OTP = require('otp');
 var action;
 
 if (process.argv.length > 1) {
-	action = process.argv[2];
+  action = process.argv[2];
 }
 
 if (action) {
-	var idx = parseInt(action, 10);
-	var totp = new TOTP(servers[idx].secret);
-	var otp = totp.now().toString();
-	process.stdout.write(otp);
+  var idx = parseInt(action, 10);
+  var secret = servers[idx].secret;
+  var otp = OTP.parse(secret).totp();
+  process.stdout.write(otp);
 }
